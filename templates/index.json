@@ -160,31 +160,36 @@
         "product_XatKfj": {
           "type": "product",
           "settings": {
-            "product": "camiseta-con-bordado-de-corazon"
+            "product": "camiseta-con-bordado-de-corazon",
+            "column_span": 2
           }
         },
         "product_ngiXRp": {
           "type": "product",
           "settings": {
-            "product": "camiseta-con-bordado-de-flor"
+            "product": "camiseta-con-bordado-de-flor",
+            "column_span": 2
           }
         },
         "product_PBxfHH": {
           "type": "product",
           "settings": {
-            "product": "camiseta-con-bordado-smile"
+            "product": "camiseta-con-bordado-smile",
+            "column_span": 2
           }
         },
         "product_6PkhLd": {
           "type": "product",
           "settings": {
-            "product": "camiseta-con-bordado-de-montana"
+            "product": "camiseta-con-bordado-de-montana",
+            "column_span": 3
           }
         },
         "product_iaEncE": {
           "type": "product",
           "settings": {
-            "product": "camiseta-con-nombre-bordado"
+            "product": "camiseta-con-nombre-bordado",
+            "column_span": 3
           }
         }
       },
