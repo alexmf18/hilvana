@@ -231,7 +231,7 @@
         "text_color": "#5a5a5a",
         "button_background": "#9C4334",
         "button_text_color": "#ffffff",
-        "content_max_width": 1320,
+        "content_max_width": 1560,
         "padding_top": 64,
         "padding_bottom": 64
       }
