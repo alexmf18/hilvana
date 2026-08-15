@@ -253,7 +253,7 @@
       "settings": {
         "image": "shopify://shop_images/fall-neutral-colors-in-retail-display.jpg",
         "image_position": "left",
-        "column_width_ratio": 50,
+        "column_width_ratio": 60,
         "image_ratio": "1 / 1",
         "image_object_position": "center",
         "image_border_radius": 0,
