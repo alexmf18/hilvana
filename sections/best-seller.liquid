@@ -16,6 +16,12 @@
     --best-seller-text-color: {{ section.settings.text_color }};
     --best-seller-button-bg: {{ section.settings.button_background }};
     --best-seller-button-text: {{ section.settings.button_text_color }};
+    --best-seller-button-border-color: {{ section.settings.button_border_color | default: section.settings.button_background }};
+    --best-seller-button-border-width: {{ section.settings.button_border_width }}px;
+    --best-seller-button-radius: {{ section.settings.button_border_radius }}px;
+    --best-seller-button-font-size: {{ section.settings.button_font_size }}px;
+    --best-seller-button-padding-y: {{ section.settings.button_padding_vertical }}px;
+    --best-seller-button-padding-x: {{ section.settings.button_padding_horizontal }}px;
     --best-seller-max-width: {{ section.settings.content_max_width }}px;
     padding-block-start: {{ section.settings.padding_top }}px;
     padding-block-end: {{ section.settings.padding_bottom }}px;
@@ -45,7 +51,19 @@
           <div class="best-seller__description">{{ description }}</div>
         {% endif %}
         {% if product != blank and button_label != blank %}
-          <a href="{{ product.url }}" class="best-seller__button">{{ button_label }}</a>
+          <a
+            href="{{ product.url }}"
+            class="
+              best-seller__button
+              best-seller__button--{{ section.settings.button_style }}
+              best-seller__button--hover-{{ section.settings.button_hover_effect }}
+              {% if section.settings.button_uppercase %} best-seller__button--uppercase{% endif %}
+              {% if section.settings.button_bold %} best-seller__button--bold{% endif %}
+              {% if section.settings.button_full_width %} best-seller__button--full-width{% endif %}
+            "
+          >
+            {{ button_label }}
+          </a>
         {% endif %}
       </div>
     </div>
@@ -136,19 +154,58 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 28px;
+    padding: var(--best-seller-button-padding-y) var(--best-seller-button-padding-x);
     background-color: var(--best-seller-button-bg);
     color: var(--best-seller-button-text);
+    border: var(--best-seller-button-border-width) solid var(--best-seller-button-border-color);
+    border-radius: var(--best-seller-button-radius);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: var(--best-seller-button-font-size);
+    font-weight: 500;
     letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
   }
 
-  .best-seller__button:hover {
-    opacity: 0.85;
+  .best-seller__button--uppercase {
+    text-transform: uppercase;
+  }
+
+  .best-seller__button--bold {
+    font-weight: 700;
+  }
+
+  .best-seller__button--full-width {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .best-seller__button--outline {
+    background-color: transparent;
+    color: var(--best-seller-button-bg);
+  }
+
+  .best-seller__button--text {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--best-seller-button-bg);
+    padding-inline: 0;
+    text-decoration: underline;
+  }
+
+  .best-seller__button--hover-fade:hover {
+    opacity: 0.8;
+  }
+
+  .best-seller__button--hover-darken:hover {
+    filter: brightness(0.85);
+  }
+
+  .best-seller__button--hover-underline:hover {
+    text-decoration: underline;
+  }
+
+  .best-seller__button--hover-scale:hover {
+    transform: scale(1.04);
   }
 {% endstylesheet %}
 
@@ -243,6 +300,109 @@
       "id": "button_text_color",
       "label": "Texto del boton",
       "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Boton"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Estilo",
+      "options": [
+        { "value": "solid", "label": "Relleno" },
+        { "value": "outline", "label": "Contorno" },
+        { "value": "text", "label": "Solo texto (enlace)" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Color del borde",
+      "info": "Se usa en el estilo de contorno. Si se deja vacio, usa el color de fondo del boton.",
+      "visible_if": "{{ section.settings.button_style == 'outline' }}"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Grosor del borde",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1,
+      "visible_if": "{{ section.settings.button_style == 'outline' }}"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Redondeo de esquinas",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Tamano del texto",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Relleno horizontal",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Relleno vertical",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "button_uppercase",
+      "label": "Texto en mayusculas",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "button_bold",
+      "label": "Texto en negrita",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "button_full_width",
+      "label": "Ocupar todo el ancho disponible",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "button_hover_effect",
+      "label": "Efecto al pasar el raton",
+      "options": [
+        { "value": "fade", "label": "Desvanecer" },
+        { "value": "darken", "label": "Oscurecer" },
+        { "value": "underline", "label": "Subrayar" },
+        { "value": "scale", "label": "Agrandar" }
+      ],
+      "default": "fade"
     },
     {
       "type": "header",
