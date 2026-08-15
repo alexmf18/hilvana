@@ -95,65 +95,6 @@
         "padding-block-end": 72
       }
     },
-    "custom_marquee_MCrggk": {
-      "type": "custom-marquee",
-      "blocks": {
-        "text_4Eheqd": {
-          "type": "text",
-          "settings": {
-            "text": "Disenos unicos"
-          }
-        },
-        "text_iAEDrg": {
-          "type": "text",
-          "settings": {
-            "text": "Envios a todo el pais"
-          }
-        },
-        "text_7baeq4": {
-          "type": "text",
-          "settings": {
-            "text": "Calidad premium"
-          }
-        },
-        "text_RdKBgb": {
-          "type": "text",
-          "settings": {
-            "text": "Bordado artesanal"
-          }
-        },
-        "text_BbEHKn": {
-          "type": "text",
-          "settings": {
-            "text": "Tecnologia moderna"
-          }
-        }
-      },
-      "block_order": [
-        "text_4Eheqd",
-        "text_iAEDrg",
-        "text_7baeq4",
-        "text_RdKBgb",
-        "text_BbEHKn"
-      ],
-      "name": "Marquesina personalizada",
-      "settings": {
-        "background_color": "#7B3131",
-        "text_color": "#FFFFFF",
-        "separator_color": "#FFFFFF",
-        "font_size": 14,
-        "bold": true,
-        "uppercase": true,
-        "letter_spacing": 1,
-        "separator": "•",
-        "gap": 20,
-        "direction": "normal",
-        "speed": 20,
-        "pause_on_hover": false,
-        "padding_top": 10,
-        "padding_bottom": 10
-      }
-    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -352,11 +293,70 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "custom_marquee_MCrggk": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_4Eheqd": {
+          "type": "text",
+          "settings": {
+            "text": "Disenos unicos"
+          }
+        },
+        "text_iAEDrg": {
+          "type": "text",
+          "settings": {
+            "text": "Envios a todo el pais"
+          }
+        },
+        "text_7baeq4": {
+          "type": "text",
+          "settings": {
+            "text": "Calidad premium"
+          }
+        },
+        "text_RdKBgb": {
+          "type": "text",
+          "settings": {
+            "text": "Bordado artesanal"
+          }
+        },
+        "text_BbEHKn": {
+          "type": "text",
+          "settings": {
+            "text": "Tecnologia moderna"
+          }
+        }
+      },
+      "block_order": [
+        "text_4Eheqd",
+        "text_iAEDrg",
+        "text_7baeq4",
+        "text_RdKBgb",
+        "text_BbEHKn"
+      ],
+      "name": "Marquesina personalizada",
+      "settings": {
+        "background_color": "#7b3131",
+        "text_color": "#ffffff",
+        "separator_color": "#ffffff",
+        "font_size": 14,
+        "bold": true,
+        "uppercase": true,
+        "letter_spacing": 1,
+        "separator": "•",
+        "gap": 20,
+        "direction": "normal",
+        "speed": 20,
+        "pause_on_hover": false,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "custom_marquee_MCrggk",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "custom_marquee_MCrggk"
   ]
 }
