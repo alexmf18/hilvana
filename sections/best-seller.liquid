@@ -1,0 +1,293 @@
+{% liquid
+  assign product = section.settings.product
+  assign label = section.settings.label
+  assign heading = section.settings.heading
+  assign description = section.settings.description
+  assign button_label = section.settings.button_label
+  assign image_position = section.settings.image_position
+%}
+
+<div
+  class="best-seller"
+  style="
+    --best-seller-bg: {{ section.settings.background_color }};
+    --best-seller-label-color: {{ section.settings.label_color }};
+    --best-seller-heading-color: {{ section.settings.heading_color }};
+    --best-seller-text-color: {{ section.settings.text_color }};
+    --best-seller-button-bg: {{ section.settings.button_background }};
+    --best-seller-button-text: {{ section.settings.button_text_color }};
+    --best-seller-max-width: {{ section.settings.content_max_width }}px;
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="best-seller__container">
+    <div class="best-seller__grid best-seller__grid--{{ image_position }}">
+      <div class="best-seller__media">
+        {% if product.featured_image != blank %}
+          {{
+            product.featured_image
+            | image_url: width: 1200
+            | image_tag: loading: 'lazy', class: 'best-seller__image', widths: '400,600,900,1200'
+          }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'best-seller__image best-seller__image--placeholder' }}
+        {% endif %}
+      </div>
+      <div class="best-seller__content">
+        {% if label != blank %}
+          <p class="best-seller__label">{{ label }}</p>
+        {% endif %}
+        {% if heading != blank %}
+          <h2 class="best-seller__heading">{{ heading }}</h2>
+        {% endif %}
+        {% if description != blank %}
+          <div class="best-seller__description">{{ description }}</div>
+        {% endif %}
+        {% if product != blank and button_label != blank %}
+          <a href="{{ product.url }}" class="best-seller__button">{{ button_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .best-seller {
+    display: block;
+    width: 100%;
+    background-color: var(--best-seller-bg);
+  }
+
+  .best-seller__container {
+    max-width: var(--best-seller-max-width);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .best-seller__container {
+      padding-inline: 40px;
+    }
+  }
+
+  .best-seller__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .best-seller__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .best-seller__grid--right .best-seller__media {
+      order: 2;
+    }
+
+    .best-seller__grid--right .best-seller__content {
+      order: 1;
+    }
+  }
+
+  .best-seller__media {
+    width: 100%;
+  }
+
+  .best-seller__image,
+  .best-seller__image--placeholder {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .best-seller__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .best-seller__label {
+    margin: 0 0 12px;
+    color: var(--best-seller-label-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .best-seller__heading {
+    margin: 0 0 16px;
+    color: var(--best-seller-heading-color);
+    font-family: var(--font-heading--family);
+  }
+
+  .best-seller__description {
+    margin: 0 0 24px;
+    color: var(--best-seller-text-color);
+    line-height: 1.6;
+  }
+
+  .best-seller__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background-color: var(--best-seller-button-bg);
+    color: var(--best-seller-button-text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+  }
+
+  .best-seller__button:hover {
+    opacity: 0.85;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Best seller",
+  "tag": "section",
+  "class": "best-seller-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto mas vendido"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Posicion de la imagen",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta",
+      "default": "BEST SELLER"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titulo",
+      "default": "Nuestra pieza mas iconica."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descripcion",
+      "default": "<p>Algodon premium con bordado de alta densidad diseñado para perdurar. Un equilibrio perfecto entre artesania tradicional y estetica digital.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del boton",
+      "default": "Ver producto"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fondo de la seccion",
+      "default": "#F4F3F1"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color de la etiqueta",
+      "default": "#6B6B6B"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color del titulo",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto",
+      "default": "#5A5A5A"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Fondo del boton",
+      "default": "#1D3AA6"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Texto del boton",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Diseno"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Ancho maximo de la seccion",
+      "min": 800,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Espaciado de la seccion"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best seller",
+      "category": "Productos"
+    }
+  ]
+}
+{% endschema %}
