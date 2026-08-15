@@ -251,6 +251,7 @@
       "type": "about-us",
       "name": "Sobre nosotros",
       "settings": {
+        "image": "shopify://shop_images/fall-neutral-colors-in-retail-display.jpg",
         "image_position": "left",
         "label": "NUESTRA HISTORIA",
         "heading": "El Arte de la Precisión",
@@ -263,8 +264,8 @@
         "heading_color": "#2f3b2f",
         "text_color": "#5a5a52",
         "link_color": "#5c6b47",
-        "content_max_width": 1440,
-        "padding_top": 72,
+        "content_max_width": 1200,
+        "padding_top": 100,
         "padding_bottom": 72
       }
     }
