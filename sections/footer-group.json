@@ -351,27 +351,9 @@
       "type": "footer-utilities",
       "blocks": {
         "logo_wordmark": {
-          "type": "text",
+          "type": "footer-brand-logo",
           "settings": {
-            "text": "<p>Hilvana</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-heading--family)",
-            "font_size": "1.25rem",
-            "line_height": "tight",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "nowrap",
-            "text_color": "#FFFFFF",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "height": 28
           },
           "blocks": {}
         },

@@ -1,0 +1,56 @@
+{% liquid
+  assign block_settings = block.settings
+  assign logo_file = 'logo-hilvana-white.png'
+%}
+
+<div
+  class="footer-brand-logo"
+  style="--footer-brand-logo-height: {{ block_settings.height }}px;"
+  {{ block.shopify_attributes }}
+>
+  <img
+    src="{{ logo_file | asset_url }}"
+    alt="{{ shop.name }}"
+    loading="lazy"
+    width="{{ block_settings.height | times: 6.2 | round }}"
+    height="{{ block_settings.height }}"
+    class="footer-brand-logo__image"
+  >
+</div>
+
+{% stylesheet %}
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-brand-logo__image {
+    height: var(--footer-brand-logo-height);
+    width: auto;
+    display: block;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Logo Hilvana (footer)",
+  "tag": null,
+  "settings": [
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Altura del logo",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Hilvana (footer)"
+    }
+  ]
+}
+{% endschema %}
