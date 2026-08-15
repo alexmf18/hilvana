@@ -9,65 +9,6 @@
  */
 {
   "sections": {
-    "marquee_banner01": {
-      "type": "custom-marquee",
-      "blocks": {
-        "text_mq_1": {
-          "type": "text",
-          "settings": {
-            "text": "Disenos unicos"
-          }
-        },
-        "text_mq_2": {
-          "type": "text",
-          "settings": {
-            "text": "Envios a todo el pais"
-          }
-        },
-        "text_mq_3": {
-          "type": "text",
-          "settings": {
-            "text": "Calidad premium"
-          }
-        },
-        "text_mq_4": {
-          "type": "text",
-          "settings": {
-            "text": "Bordado artesanal"
-          }
-        },
-        "text_mq_5": {
-          "type": "text",
-          "settings": {
-            "text": "Tecnologia moderna"
-          }
-        }
-      },
-      "block_order": [
-        "text_mq_1",
-        "text_mq_2",
-        "text_mq_3",
-        "text_mq_4",
-        "text_mq_5"
-      ],
-      "name": "Marquesina personalizada",
-      "settings": {
-        "background_color": "#7B3131",
-        "text_color": "#FFFFFF",
-        "separator_color": "#FFFFFF",
-        "font_size": 14,
-        "bold": true,
-        "uppercase": true,
-        "letter_spacing": 1,
-        "separator": "•",
-        "gap": 20,
-        "direction": "normal",
-        "speed": 20,
-        "pause_on_hover": false,
-        "padding_top": 10,
-        "padding_bottom": 10
-      }
-    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -117,10 +58,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
+      "block_order": ["text_YLPk4p", "button_H9gpTf"],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -163,7 +101,13 @@
         "product_4": { "type": "product", "settings": { "product": "" } },
         "product_5": { "type": "product", "settings": { "product": "" } }
       },
-      "block_order": ["product_1", "product_2", "product_3", "product_4", "product_5"],
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "product_5"
+      ],
       "name": "Coleccion destacada",
       "settings": {
         "heading": "Coleccion Destacada",
@@ -176,6 +120,65 @@
         "rows_gap": 32,
         "padding_top": 56,
         "padding_bottom": 56
+      }
+    },
+    "custom_marquee_MCrggk": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_4Eheqd": {
+          "type": "text",
+          "settings": {
+            "text": "Disenos unicos"
+          }
+        },
+        "text_iAEDrg": {
+          "type": "text",
+          "settings": {
+            "text": "Envios a todo el pais"
+          }
+        },
+        "text_7baeq4": {
+          "type": "text",
+          "settings": {
+            "text": "Calidad premium"
+          }
+        },
+        "text_RdKBgb": {
+          "type": "text",
+          "settings": {
+            "text": "Bordado artesanal"
+          }
+        },
+        "text_BbEHKn": {
+          "type": "text",
+          "settings": {
+            "text": "Tecnologia moderna"
+          }
+        }
+      },
+      "block_order": [
+        "text_4Eheqd",
+        "text_iAEDrg",
+        "text_7baeq4",
+        "text_RdKBgb",
+        "text_BbEHKn"
+      ],
+      "name": "Marquesina personalizada",
+      "settings": {
+        "background_color": "#7b3131",
+        "text_color": "#ffffff",
+        "separator_color": "#ffffff",
+        "font_size": 14,
+        "bold": true,
+        "uppercase": true,
+        "letter_spacing": 1,
+        "separator": "•",
+        "gap": 20,
+        "direction": "normal",
+        "speed": 20,
+        "pause_on_hover": false,
+        "padding_top": 10,
+        "padding_bottom": 10
       }
     },
     "product_list_fa6P9H": {
@@ -379,8 +382,8 @@
     }
   },
   "order": [
-    "marquee_banner01",
     "hero_jVaWmY",
+    "custom_marquee_MCrggk",
     "featured_showcase01",
     "product_list_fa6P9H"
   ]
