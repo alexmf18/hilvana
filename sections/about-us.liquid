@@ -1,0 +1,317 @@
+{% liquid
+  assign image = section.settings.image
+  assign label = section.settings.label
+  assign heading = section.settings.heading
+  assign description = section.settings.description
+  assign link_label = section.settings.link_label
+  assign link_url = section.settings.link_url
+  assign image_position = section.settings.image_position
+%}
+
+<div
+  class="about-us"
+  style="
+    --about-us-bg: {{ section.settings.background_color }};
+    --about-us-label-color: {{ section.settings.label_color }};
+    --about-us-heading-color: {{ section.settings.heading_color }};
+    --about-us-text-color: {{ section.settings.text_color }};
+    --about-us-link-color: {{ section.settings.link_color }};
+    --about-us-max-width: {{ section.settings.content_max_width }}px;
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="about-us__container">
+    <div class="about-us__grid about-us__grid--{{ image_position }}">
+      <div class="about-us__media">
+        {% if image != blank %}
+          {{
+            image
+            | image_url: width: 1200
+            | image_tag: loading: 'lazy', class: 'about-us__image', widths: '400,600,900,1200'
+          }}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'about-us__image about-us__image--placeholder' }}
+        {% endif %}
+      </div>
+      <div class="about-us__content">
+        {% if label != blank %}
+          <p class="about-us__label">{{ label }}</p>
+        {% endif %}
+        {% if heading != blank %}
+          <h2 class="about-us__heading">{{ heading }}</h2>
+        {% endif %}
+        {% if description != blank %}
+          <div class="about-us__description">{{ description }}</div>
+        {% endif %}
+        {% if link_label != blank %}
+          <a href="{{ link_url | default: '#' }}" class="about-us__link">
+            {{ link_label }}
+            {% if section.settings.show_arrow %}
+              <span class="about-us__link-arrow" aria-hidden="true">&rarr;</span>
+            {% endif %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-us {
+    display: block;
+    width: 100%;
+    background-color: var(--about-us-bg);
+  }
+
+  .about-us__container {
+    max-width: var(--about-us-max-width);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .about-us__container {
+      padding-inline: 40px;
+    }
+  }
+
+  .about-us__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .about-us__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+    }
+
+    .about-us__grid--right .about-us__media {
+      order: 2;
+    }
+
+    .about-us__grid--right .about-us__content {
+      order: 1;
+    }
+  }
+
+  .about-us__media {
+    width: 100%;
+  }
+
+  .about-us__image,
+  .about-us__image--placeholder {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .about-us__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-us__label {
+    margin: 0 0 12px;
+    color: var(--about-us-label-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .about-us__heading {
+    margin: 0 0 20px;
+    color: var(--about-us-heading-color);
+    font-family: var(--font-heading--family);
+  }
+
+  .about-us__description {
+    margin: 0 0 24px;
+    color: var(--about-us-text-color);
+    line-height: 1.7;
+  }
+
+  .about-us__description p {
+    margin: 0 0 16px;
+  }
+
+  .about-us__description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-us__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--about-us-link-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .about-us__link:hover .about-us__link-arrow {
+    transform: translateX(4px);
+  }
+
+  .about-us__link-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sobre nosotros",
+  "tag": "section",
+  "class": "about-us-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Posicion de la imagen",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta",
+      "default": "NUESTRA HISTORIA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titulo",
+      "default": "El Arte de la Precision"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descripcion",
+      "default": "<p>Hilvana nacio de la fusion entre el respeto por las tecnicas tradicionales y las posibilidades de la tecnologia moderna. En nuestro taller, cada diseño comienza como un trazo en papel antes de ser digitalizado con extremo cuidado.</p><p>Creemos que el bordado a maquina no es una produccion en masa, sino una herramienta que, guiada por manos expertas, permite crear piezas de una riqueza visual y tactil inigualable. Nuestra filosofia se basa en la durabilidad, la belleza sutil y el consumo consciente.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Enlace"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Texto del enlace",
+      "default": "Conoce mas sobre nosotros"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Enlace"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Mostrar flecha",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fondo de la seccion",
+      "default": "#FAF8F4"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color de la etiqueta",
+      "default": "#B0708A"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color del titulo",
+      "default": "#2F3B2F"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto",
+      "default": "#5A5A52"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Color del enlace",
+      "default": "#5C6B47"
+    },
+    {
+      "type": "header",
+      "content": "Diseno"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Ancho maximo de la seccion",
+      "min": 800,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Espaciado de la seccion"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sobre nosotros",
+      "category": "Texto"
+    }
+  ]
+}
+{% endschema %}
