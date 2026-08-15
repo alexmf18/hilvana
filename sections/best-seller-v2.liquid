@@ -1,0 +1,533 @@
+{%- liquid
+  assign producto = section.settings.product
+
+  # Imagen: la subida a mano manda; si no, la imagen destacada del producto.
+  assign imagen = section.settings.image
+  if imagen == blank
+    assign imagen = producto.featured_image
+  endif
+
+  # Título: el escrito a mano manda; si no, el nombre del producto.
+  assign titulo = section.settings.heading
+  if titulo == blank
+    assign titulo = producto.title
+  endif
+
+  assign enlace = section.settings.button_link
+  if enlace == blank
+    assign enlace = producto.url
+  endif
+
+  # Proporción de la imagen -> porcentaje de relleno (cajas siempre iguales).
+  assign partes = section.settings.image_ratio | split: '/'
+  assign ratio_w = partes[0] | plus: 0.0
+  assign ratio_h = partes[1] | plus: 0.0
+  if ratio_w <= 0 or ratio_h <= 0
+    assign ratio_w = 1.0
+    assign ratio_h = 1.0
+  endif
+  assign ratio_pct = ratio_h | times: 100.0 | divided_by: ratio_w
+
+  assign foco = section.settings.image_position_crop
+  if foco == 'auto'
+    assign foco = imagen.presentation.focal_point | default: 'center center'
+  endif
+
+  assign col_imagen = section.settings.image_width
+  assign col_texto = 100 | minus: col_imagen
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --brd-bs-bg: {{ section.settings.bg_color }};
+    --brd-bs-media-bg: {{ section.settings.media_bg }};
+    --brd-bs-label: {{ section.settings.label_color }};
+    --brd-bs-heading: {{ section.settings.heading_color }};
+    --brd-bs-text: {{ section.settings.text_color }};
+    --brd-bs-btn-bg: {{ section.settings.button_bg }};
+    --brd-bs-btn-text: {{ section.settings.button_text_color }};
+    --brd-bs-pad: {{ ratio_pct }}%;
+    --brd-bs-fit: {{ section.settings.image_fit }};
+    --brd-bs-radius: {{ section.settings.image_radius }}px;
+    --brd-bs-gap: {{ section.settings.gap }}px;
+    --brd-bs-col-img: {{ col_imagen }}fr;
+    --brd-bs-col-txt: {{ col_texto }}fr;
+    --brd-bs-max: {{ section.settings.max_width }}px;
+  }
+
+  .brd-bs {
+    box-sizing: border-box;
+    background: var(--brd-bs-bg);
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .brd-bs {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="brd-bs">
+  <div class="brd-bs__inner page-width">
+    {%- if section.settings.label != blank -%}
+      <p class="brd-bs__label">{{ section.settings.label | escape }}</p>
+    {%- endif -%}
+
+    <div class="brd-bs__layout brd-bs__layout--{{ section.settings.layout }}">
+      <div class="brd-bs__media-col">
+        <div class="brd-bs__media">
+          {%- if imagen != blank -%}
+            <img
+              class="brd-bs__img"
+              style="object-fit: {{ section.settings.image_fit }}; object-position: {{ foco }};"
+              src="{{ imagen | image_url: width: 1400 }}"
+              srcset="
+                {{ imagen | image_url: width: 600 }} 600w,
+                {{ imagen | image_url: width: 900 }} 900w,
+                {{ imagen | image_url: width: 1400 }} 1400w
+              "
+              sizes="(min-width: 750px) {{ col_imagen }}vw, 92vw"
+              alt="{{ imagen.alt | default: producto.title | escape }}"
+              width="{{ imagen.width }}"
+              height="{{ imagen.height }}"
+              loading="lazy"
+            >
+          {%- else -%}
+            {{ 'product-apparel-2' | placeholder_svg_tag: 'brd-bs__placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="brd-bs__text-col">
+        {%- if titulo != blank -%}
+          <h2 class="brd-bs__heading">{{ titulo | escape }}</h2>
+        {%- else -%}
+          <h2 class="brd-bs__heading">Nuestra pieza más icónica.</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="brd-bs__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.show_price and producto != blank -%}
+          <p class="brd-bs__price">
+            {%- if producto.price_varies -%}
+              Desde {{ producto.price_min | money }}
+            {%- else -%}
+              {{ producto.price | money }}
+            {%- endif -%}
+          </p>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank -%}
+          <a class="brd-bs__btn" href="{{ enlace | default: '#' }}">
+            {{- section.settings.button_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .brd-bs,
+  #shopify-section-{{ section.id }} .brd-bs *,
+  #shopify-section-{{ section.id }} .brd-bs *::before,
+  #shopify-section-{{ section.id }} .brd-bs *::after {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__inner {
+    max-width: var(--brd-bs-max);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__label {
+    margin: 0 0 22px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brd-bs-label);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__layout {
+    display: grid;
+    grid-template-columns: var(--brd-bs-col-img) var(--brd-bs-col-txt);
+    gap: var(--brd-bs-gap);
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__layout--right {
+    grid-template-columns: var(--brd-bs-col-txt) var(--brd-bs-col-img);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__layout--right .brd-bs__media-col {
+    order: 2;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__media-col,
+  #shopify-section-{{ section.id }} .brd-bs__text-col {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__media {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: var(--brd-bs-pad);
+    overflow: hidden;
+    border-radius: var(--brd-bs-radius);
+    background: var(--brd-bs-media-bg);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__img,
+  #shopify-section-{{ section.id }} .brd-bs__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__placeholder {
+    fill: #C9C9C9;
+    background: var(--brd-bs-media-bg);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__heading {
+    margin: 0;
+    font-size: clamp(22px, 2.6vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--brd-bs-heading);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__text {
+    margin-top: 16px;
+    max-width: 46ch;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--brd-bs-text);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__text > *:first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__text > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__price {
+    margin: 14px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--brd-bs-heading);
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__btn {
+    display: inline-block;
+    margin-top: 26px;
+    padding: 13px 28px;
+    border: 1px solid var(--brd-bs-btn-bg);
+    border-radius: {{ section.settings.button_radius }}px;
+    background: var(--brd-bs-btn-bg);
+    color: var(--brd-bs-btn-text);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .brd-bs__btn:hover,
+  #shopify-section-{{ section.id }} .brd-bs__btn:focus-visible {
+    background: transparent;
+    color: var(--brd-bs-btn-bg);
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .brd-bs__layout,
+    #shopify-section-{{ section.id }} .brd-bs__layout--right {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .brd-bs__layout--right .brd-bs__media-col {
+      order: 0;
+    }
+
+    #shopify-section-{{ section.id }} .brd-bs__label {
+      margin-bottom: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .brd-bs__btn {
+      margin-top: 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .brd-bs__btn {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Best seller",
+  "tag": "section",
+  "class": "brd-bs-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto",
+      "info": "De aquí salen la imagen, el nombre y el enlace del botón."
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta superior",
+      "default": "Best seller"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "info": "Déjalo vacío para usar el nombre del producto."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Algodón premium con bordado de alta densidad diseñado para perdurar. Un equilibrio perfecto entre artesanía tradicional y estética digital.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Mostrar el precio",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Botón"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Ver producto"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón",
+      "info": "Déjalo vacío para enlazar a la página del producto."
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Redondeo del botón",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen personalizada",
+      "info": "Opcional. Si la dejas vacía se usa la imagen destacada del producto."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Posición de la imagen",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Ancho de la imagen",
+      "default": 55
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Proporción de la imagen",
+      "options": [
+        { "value": "1/1", "label": "Cuadrada (1:1)" },
+        { "value": "4/3", "label": "Horizontal (4:3)" },
+        { "value": "3/2", "label": "Horizontal (3:2)" },
+        { "value": "16/9", "label": "Panorámica (16:9)" },
+        { "value": "4/5", "label": "Vertical (4:5)" }
+      ],
+      "default": "4/3"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajuste de la foto",
+      "options": [
+        { "value": "cover", "label": "Recortar para llenar la caja" },
+        { "value": "contain", "label": "Mostrar la foto completa" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position_crop",
+      "label": "Zona visible de la foto",
+      "options": [
+        { "value": "auto", "label": "Automático (punto focal)" },
+        { "value": "center top", "label": "Arriba" },
+        { "value": "center center", "label": "Centro" },
+        { "value": "center bottom", "label": "Abajo" },
+        { "value": "left center", "label": "Izquierda" },
+        { "value": "right center", "label": "Derecha" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Redondeo de la imagen",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 16,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Separación entre imagen y texto",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "label": "Ancho máximo del contenido",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fondo de la sección",
+      "default": "#F7F6F4"
+    },
+    {
+      "type": "color",
+      "id": "media_bg",
+      "label": "Fondo de la caja de imagen",
+      "default": "#EDEDED"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Etiqueta superior",
+      "default": "#6C63E8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Título",
+      "default": "#1B1B19"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texto",
+      "default": "#6C63E8"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Fondo del botón",
+      "default": "#1A4EE0"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Texto del botón",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio superior",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacio inferior",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best seller"
+    }
+  ]
+}
+{% endschema %}
