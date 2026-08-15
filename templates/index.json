@@ -8,6 +8,65 @@
  * ------------------------------------------------------------
  */{
   "sections": {
+    "marquee_banner01": {
+      "type": "custom-marquee",
+      "blocks": {
+        "text_mq_1": {
+          "type": "text",
+          "settings": {
+            "text": "Disenos unicos"
+          }
+        },
+        "text_mq_2": {
+          "type": "text",
+          "settings": {
+            "text": "Envios a todo el pais"
+          }
+        },
+        "text_mq_3": {
+          "type": "text",
+          "settings": {
+            "text": "Calidad premium"
+          }
+        },
+        "text_mq_4": {
+          "type": "text",
+          "settings": {
+            "text": "Bordado artesanal"
+          }
+        },
+        "text_mq_5": {
+          "type": "text",
+          "settings": {
+            "text": "Tecnologia moderna"
+          }
+        }
+      },
+      "block_order": [
+        "text_mq_1",
+        "text_mq_2",
+        "text_mq_3",
+        "text_mq_4",
+        "text_mq_5"
+      ],
+      "name": "Marquesina personalizada",
+      "settings": {
+        "background_color": "#7B3131",
+        "text_color": "#FFFFFF",
+        "separator_color": "#FFFFFF",
+        "font_size": 14,
+        "bold": true,
+        "uppercase": true,
+        "letter_spacing": 1,
+        "separator": "•",
+        "gap": 20,
+        "direction": "normal",
+        "speed": 20,
+        "pause_on_hover": false,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -279,6 +338,7 @@
     }
   },
   "order": [
+    "marquee_banner01",
     "hero_jVaWmY",
     "product_list_fa6P9H"
   ]

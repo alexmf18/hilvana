@@ -1,0 +1,274 @@
+{% liquid
+  assign bg_color = section.settings.background_color
+  assign text_color = section.settings.text_color
+  assign separator_color = section.settings.separator_color
+  assign separator = section.settings.separator
+  assign font_size = section.settings.font_size
+  assign gap = section.settings.gap
+  assign speed = section.settings.speed
+  assign direction = section.settings.direction
+  assign uppercase = section.settings.uppercase
+  assign letter_spacing = section.settings.letter_spacing
+  assign bold = section.settings.bold
+  assign pause_on_hover = section.settings.pause_on_hover
+%}
+
+<div
+  class="custom-marquee{% if pause_on_hover %} custom-marquee--pause-on-hover{% endif %}"
+  style="
+    --custom-marquee-bg: {{ bg_color }};
+    --custom-marquee-color: {{ text_color }};
+    --custom-marquee-separator-color: {{ separator_color | default: text_color }};
+    --custom-marquee-font-size: {{ font_size }}px;
+    --custom-marquee-gap: {{ gap }}px;
+    --custom-marquee-duration: {{ speed }}s;
+    --custom-marquee-direction: {{ direction }};
+    --custom-marquee-letter-spacing: {{ letter_spacing }}px;
+    --custom-marquee-weight: {% if bold %}700{% else %}400{% endif %};
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="custom-marquee__track">
+    {% for i in (1..2) %}
+      <div class="custom-marquee__group" aria-hidden="{% if i == 2 %}true{% else %}false{% endif %}">
+        {% for block in section.blocks %}
+          <span class="custom-marquee__item{% if uppercase %} custom-marquee__item--uppercase{% endif %}" {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+          </span>
+          <span class="custom-marquee__separator" aria-hidden="true">{{ separator }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .custom-marquee {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--custom-marquee-bg);
+  }
+
+  .custom-marquee__track {
+    display: flex;
+    width: fit-content;
+  }
+
+  .custom-marquee__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: max-content;
+  }
+
+  .custom-marquee__item {
+    color: var(--custom-marquee-color);
+    font-size: var(--custom-marquee-font-size);
+    font-weight: var(--custom-marquee-weight);
+    letter-spacing: var(--custom-marquee-letter-spacing);
+    white-space: nowrap;
+  }
+
+  .custom-marquee__item--uppercase {
+    text-transform: uppercase;
+  }
+
+  .custom-marquee__separator {
+    color: var(--custom-marquee-separator-color);
+    font-size: var(--custom-marquee-font-size);
+    margin-inline: var(--custom-marquee-gap);
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .custom-marquee__track {
+      animation: custom-marquee-scroll var(--custom-marquee-duration) linear infinite;
+      animation-direction: var(--custom-marquee-direction);
+    }
+
+    .custom-marquee--pause-on-hover:hover .custom-marquee__track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes custom-marquee-scroll {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Marquesina personalizada",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#7B3131"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Color del separador",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Tipografia"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Tamano del texto",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "bold",
+      "label": "Texto en negrita",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "Texto en mayusculas",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Espaciado entre letras",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Separador"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Caracter separador",
+      "default": "•"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Espacio entre elementos",
+      "min": 4,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Movimiento"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direccion",
+      "options": [
+        { "value": "normal", "label": "Izquierda" },
+        { "value": "reverse", "label": "Derecha" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Velocidad (duracion del bucle)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "default": 20,
+      "info": "Un numero mas bajo mueve la marquesina mas rapido"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pausar al pasar el raton por encima",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Espaciado de la seccion"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Superior",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Inferior",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Texto",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Nuevo texto"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquesina personalizada",
+      "category": "Texto",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Disenos unicos" } },
+        { "type": "text", "settings": { "text": "Envios a todo el pais" } },
+        { "type": "text", "settings": { "text": "Calidad premium" } },
+        { "type": "text", "settings": { "text": "Bordado artesanal" } },
+        { "type": "text", "settings": { "text": "Tecnologia moderna" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
