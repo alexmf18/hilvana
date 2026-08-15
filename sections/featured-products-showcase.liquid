@@ -17,54 +17,57 @@
     --featured-showcase-ratio: {{ image_ratio }};
     --featured-showcase-columns-gap: {{ section.settings.columns_gap }}px;
     --featured-showcase-rows-gap: {{ section.settings.rows_gap }}px;
+    --featured-showcase-max-width: {{ section.settings.content_max_width }}px;
     padding-block-start: {{ section.settings.padding_top }}px;
     padding-block-end: {{ section.settings.padding_bottom }}px;
   "
 >
-  {% if heading != blank %}
-    <div class="featured-showcase__header">
-      <h2 class="featured-showcase__heading">{{ heading }}</h2>
-      <span class="featured-showcase__accent" aria-hidden="true"></span>
-    </div>
-  {% endif %}
+  <div class="featured-showcase__container">
+    {% if heading != blank %}
+      <div class="featured-showcase__header">
+        <h2 class="featured-showcase__heading">{{ heading }}</h2>
+        <span class="featured-showcase__accent" aria-hidden="true"></span>
+      </div>
+    {% endif %}
 
-  <div class="featured-showcase__grid">
-    {% for block in section.blocks %}
-      {% liquid
-        assign product = block.settings.product
-      %}
-      <a
-        href="{% if product != blank %}{{ product.url }}{% else %}#{% endif %}"
-        class="featured-showcase__item"
-        {{ block.shopify_attributes }}
-      >
-        <div class="featured-showcase__image-wrap">
-          {% if product.featured_image != blank %}
-            {{
-              product.featured_image
-              | image_url: width: 900
-              | image_tag: loading: 'lazy', class: 'featured-showcase__image', widths: '400,600,900'
-            }}
-          {% else %}
-            {{ 'product-1' | placeholder_svg_tag: 'featured-showcase__image featured-showcase__image--placeholder' }}
-          {% endif %}
-        </div>
-        <div class="featured-showcase__info">
-          <p class="featured-showcase__title">
-            {% if product != blank %}{{ product.title }}{% else %}Selecciona un producto{% endif %}
-          </p>
-          {% if product != blank %}
-            <p class="featured-showcase__price">
-              {%- if product.price_varies -%}
-                Desde {{ product.price_min | money }}
-              {%- else -%}
-                {{ product.price | money }}
-              {%- endif -%}
+    <div class="featured-showcase__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign product = block.settings.product
+        %}
+        <a
+          href="{% if product != blank %}{{ product.url }}{% else %}#{% endif %}"
+          class="featured-showcase__item"
+          {{ block.shopify_attributes }}
+        >
+          <div class="featured-showcase__image-wrap">
+            {% if product.featured_image != blank %}
+              {{
+                product.featured_image
+                | image_url: width: 700
+                | image_tag: loading: 'lazy', class: 'featured-showcase__image', widths: '300,450,700'
+              }}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'featured-showcase__image featured-showcase__image--placeholder' }}
+            {% endif %}
+          </div>
+          <div class="featured-showcase__info">
+            <p class="featured-showcase__title">
+              {% if product != blank %}{{ product.title }}{% else %}Selecciona un producto{% endif %}
             </p>
-          {% endif %}
-        </div>
-      </a>
-    {% endfor %}
+            {% if product != blank %}
+              <p class="featured-showcase__price">
+                {%- if product.price_varies -%}
+                  Desde {{ product.price_min | money }}
+                {%- else -%}
+                  {{ product.price | money }}
+                {%- endif -%}
+              </p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
@@ -72,6 +75,18 @@
   .featured-showcase {
     display: block;
     width: 100%;
+  }
+
+  .featured-showcase__container {
+    max-width: var(--featured-showcase-max-width);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .featured-showcase__container {
+      padding-inline: 40px;
+    }
   }
 
   .featured-showcase__header {
@@ -175,7 +190,7 @@
 
 {% schema %}
 {
-  "name": "Coleccion destacada",
+  "name": "Colección destacada",
   "tag": "section",
   "class": "featured-showcase-wrapper",
   "disabled_on": {
@@ -207,6 +222,17 @@
     {
       "type": "header",
       "content": "Productos"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Ancho maximo de la seccion",
+      "min": 800,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "default": 1200,
+      "info": "Reduce este valor para dejar mas margen a los lados"
     },
     {
       "type": "select",
@@ -260,8 +286,8 @@
       "id": "padding_top",
       "label": "Superior",
       "min": 0,
-      "max": 120,
-      "step": 1,
+      "max": 100,
+      "step": 2,
       "unit": "px",
       "default": 56
     },
@@ -270,8 +296,8 @@
       "id": "padding_bottom",
       "label": "Inferior",
       "min": 0,
-      "max": 120,
-      "step": 1,
+      "max": 100,
+      "step": 2,
       "unit": "px",
       "default": 56
     }
@@ -291,10 +317,10 @@
   ],
   "presets": [
     {
-      "name": "Coleccion destacada",
+      "name": "Colección destacada",
       "category": "Productos",
       "settings": {
-        "heading": "Coleccion Destacada"
+        "heading": "Colección Destacada"
       },
       "blocks": [
         { "type": "product" },
