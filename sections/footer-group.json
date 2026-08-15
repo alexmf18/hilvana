@@ -102,44 +102,45 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "email_signup_crihX7": {
+              "type": "email-signup",
+              "settings": {
+                "width": "fill",
+                "custom_width": 100,
+                "heading": "",
+                "heading_text_color": "",
+                "heading_preset": "h3",
+                "border_style": "all",
+                "input_style": "custom",
+                "border_width": 1,
+                "border_radius": 4,
+                "input_background_color": "#2D4B44",
+                "input_text_color": "#FFFFFF",
+                "input_border_color": "#5C7A6F",
+                "input_type_preset": "paragraph",
+                "style_class": "button-unstyled",
+                "custom_button_background": "#FFFFFF",
+                "custom_button_text": "#1A2E28",
+                "custom_button_border": "#FFFFFF",
+                "link_text_color": "",
+                "display_type": "text",
+                "label": "Suscribirse",
+                "integrated_button": false,
+                "button_type_preset": "paragraph",
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "text_LWt8Pz",
-            "text_f9CFLH"
+            "text_f9CFLH",
+            "email_signup_crihX7"
           ]
-        },
-        "email_signup_crihX7": {
-          "type": "email-signup",
-          "settings": {
-            "width": "fill",
-            "custom_width": 100,
-            "heading": "",
-            "heading_text_color": "",
-            "heading_preset": "h3",
-            "border_style": "all",
-            "input_style": "custom",
-            "border_width": 1,
-            "border_radius": 4,
-            "input_background_color": "#2D4B44",
-            "input_text_color": "#FFFFFF",
-            "input_border_color": "#5C7A6F",
-            "input_type_preset": "paragraph",
-            "style_class": "button-unstyled",
-            "custom_button_background": "#FFFFFF",
-            "custom_button_text": "#1A2E28",
-            "custom_button_border": "#FFFFFF",
-            "link_text_color": "",
-            "display_type": "text",
-            "label": "Suscribirse",
-            "integrated_button": false,
-            "button_type_preset": "paragraph",
-            "padding-block-start": 8,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         },
         "group_explorar": {
           "type": "group",
@@ -334,7 +335,6 @@
       },
       "block_order": [
         "group_H6VpwJ",
-        "email_signup_crihX7",
         "group_explorar",
         "group_conectar"
       ],
