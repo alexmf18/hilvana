@@ -157,6 +157,13 @@
     "featured_products_showcase_aCaXDU": {
       "type": "featured-products-showcase",
       "blocks": {
+        "product_qtWrpW": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "column_span": 2
+          }
+        },
         "product_XatKfj": {
           "type": "product",
           "settings": {
@@ -194,6 +201,7 @@
         }
       },
       "block_order": [
+        "product_qtWrpW",
         "product_XatKfj",
         "product_ngiXRp",
         "product_PBxfHH",
