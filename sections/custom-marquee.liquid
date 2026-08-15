@@ -21,7 +21,7 @@
     --custom-marquee-separator-color: {{ separator_color | default: text_color }};
     --custom-marquee-font-size: {{ font_size }}px;
     --custom-marquee-gap: {{ gap }}px;
-    --custom-marquee-duration: {{ speed }}s;
+    --custom-marquee-duration: {{ speed | times: 4 }}s;
     --custom-marquee-direction: {{ direction }};
     --custom-marquee-letter-spacing: {{ letter_spacing }}px;
     --custom-marquee-weight: {% if bold %}700{% else %}400{% endif %};
@@ -30,13 +30,23 @@
   "
 >
   <div class="custom-marquee__track">
-    {% for i in (1..2) %}
-      <div class="custom-marquee__group" aria-hidden="{% if i == 2 %}true{% else %}false{% endif %}">
-        {% for block in section.blocks %}
-          <span class="custom-marquee__item{% if uppercase %} custom-marquee__item--uppercase{% endif %}" {{ block.shopify_attributes }}>
-            {{ block.settings.text }}
-          </span>
-          <span class="custom-marquee__separator" aria-hidden="true">{{ separator }}</span>
+    {% comment %}
+      Each "group" repeats the full block list several times so its width
+      comfortably exceeds the widest expected viewport. Two identical
+      groups are placed back to back and the animation shifts left by
+      exactly one group's width (-50% of the track), so group two always
+      lands exactly where group one started: the loop never runs out of
+      content and never visibly "restarts".
+    {% endcomment %}
+    {% for group in (1..2) %}
+      <div class="custom-marquee__group" aria-hidden="{% if group == 2 %}true{% else %}false{% endif %}">
+        {% for repeat in (1..4) %}
+          {% for block in section.blocks %}
+            <span class="custom-marquee__item{% if uppercase %} custom-marquee__item--uppercase{% endif %}" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </span>
+            <span class="custom-marquee__separator" aria-hidden="true">{{ separator }}</span>
+          {% endfor %}
         {% endfor %}
       </div>
     {% endfor %}
@@ -44,6 +54,14 @@
 </div>
 
 {% stylesheet %}
+  .custom-marquee-wrapper {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
   .custom-marquee {
     display: block;
     width: 100%;
@@ -104,7 +122,7 @@
 {
   "name": "Marquesina personalizada",
   "tag": "section",
-  "class": "section",
+  "class": "custom-marquee-wrapper",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
