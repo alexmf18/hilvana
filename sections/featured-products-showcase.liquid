@@ -56,7 +56,7 @@
           {% if product != blank %}
             <p class="featured-showcase__price">
               {%- if product.price_varies -%}
-                {{ 'products.product.price.from_price_html' | t: price: product.price_min | money }}
+                Desde {{ product.price_min | money }}
               {%- else -%}
                 {{ product.price | money }}
               {%- endif -%}
