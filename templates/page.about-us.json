@@ -174,7 +174,7 @@
         "link_label": "",
         "link_url": "",
         "show_arrow": true,
-        "background_color": "#faf8f4",
+        "background_color": "{{ settings.color_palette.background }}",
         "label_color": "#9c4334",
         "heading_color": "#2d4b44",
         "text_color": "#5a5a52",
