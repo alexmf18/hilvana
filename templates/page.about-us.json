@@ -76,7 +76,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#9C4334",
+            "text_color": "#9c4334",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -101,7 +101,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#FAF8F4",
+            "text_color": "#faf8f4",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 25,
@@ -222,6 +222,7 @@
       ],
       "name": "Nuestro proceso",
       "settings": {
+        "background_color": "#faf8f4",
         "label": "EL PROCESO",
         "heading": "Del Concepto a la Prenda",
         "label_color": "#9c4334",
@@ -236,12 +237,34 @@
         "padding_top": 72,
         "padding_bottom": 72
       }
+    },
+    "founder_quote_i7DAJn": {
+      "type": "founder-quote",
+      "name": "Cita de la fundadora",
+      "settings": {
+        "image": "shopify://shop_images/fundadora.png",
+        "image_position": "left",
+        "column_width_ratio": 40,
+        "quote_mark": "",
+        "quote": "<p>''El verdadero lujo reside en la atencion al detalle. Funde Hilvana para crear prendas que no solo se vistan, sino que se sientan; donde cada hilo cuenta una historia de innovacion y respeto por la artesania.''</p>",
+        "author_name": "Elena Valdes",
+        "author_role": "Fundadora & Directora Creativa",
+        "background_color": "#FAF8F4",
+        "quote_mark_color": "#2D4B44",
+        "quote_text_color": "#2D4B44",
+        "author_name_color": "#2D4B44",
+        "author_role_color": "#9C4334",
+        "content_max_width": 1100,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     }
   },
   "order": [
     "main",
     "hero_gxxiar",
     "about_us_mission",
-    "process_steps01"
+    "process_steps01",
+    "founder_quote_i7DAJn"
   ]
 }
