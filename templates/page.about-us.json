@@ -145,11 +145,33 @@
         "padding_top": 72,
         "padding_bottom": 72
       }
+    },
+    "founder_quote01": {
+      "type": "founder-quote",
+      "name": "Cita de la fundadora",
+      "settings": {
+        "image": "",
+        "image_position": "left",
+        "column_width_ratio": 45,
+        "quote_mark": "99",
+        "quote": "<p>El verdadero lujo reside en la atención al detalle. Fundé Hilvana para crear prendas que no solo se vistan, sino que se sientan; donde cada hilo cuenta una historia de innovación y respeto por la artesanía.</p>",
+        "author_name": "Elena Valdés",
+        "author_role": "Fundadora & Directora Creativa",
+        "background_color": "#FAF8F4",
+        "quote_mark_color": "#2D4B44",
+        "quote_text_color": "#2D4B44",
+        "author_name_color": "#2D4B44",
+        "author_role_color": "#9C4334",
+        "content_max_width": 1100,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     }
   },
   "order": [
     "main",
     "about_us_mission",
-    "process_steps01"
+    "process_steps01",
+    "founder_quote01"
   ]
 }
