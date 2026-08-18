@@ -249,7 +249,7 @@
         "quote": "<p>''El verdadero lujo reside en la atencion al detalle. Funde Hilvana para crear prendas que no solo se vistan, sino que se sientan; donde cada hilo cuenta una historia de innovacion y respeto por la artesania.''</p>",
         "author_name": "Elena Valdes",
         "author_role": "Fundadora & Directora Creativa",
-        "background_color": "#FAF8F4",
+        "background_color": "{{ settings.color_palette.background }}",
         "quote_mark_color": "#2D4B44",
         "quote_text_color": "#2D4B44",
         "author_name_color": "#2D4B44",
