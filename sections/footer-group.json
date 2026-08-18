@@ -120,7 +120,7 @@
                 "input_border_color": "#5c7a6f",
                 "input_type_preset": "paragraph",
                 "style_class": "button-custom",
-                "custom_button_background": "#2D4B44",
+                "custom_button_background": "#2d4b44",
                 "custom_button_text": "{{ settings.color_palette.background }}",
                 "custom_button_border": "#ffffff",
                 "link_text_color": "",
@@ -209,7 +209,7 @@
             "text_explorar_links": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"shopify://collections/all\">Shop</a></p><p><a href=\"shopify://pages/about-us\">About Us</a></p><p><a href=\"shopify://pages/faq\">FAQ</a></p><p><a href=\"shopify://pages/contact\">Contact</a></p>",
+                "text": "<p><a href=\"/collections/all\" title=\"Todos los productos\">Catalogo</a></p><p><a href=\"/pages/sobre-nosotros\" title=\"sobre nosotros\">Sobre Nosotros</a></p><p><a href=\"shopify://pages/faq\">FAQ</a></p><p><a href=\"/pages/contact\" title=\"Contact\">Contacto</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
