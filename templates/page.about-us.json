@@ -76,7 +76,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#9C4334",
+            "text_color": "#9c4334",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -101,7 +101,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#FAF8F4",
+            "text_color": "#faf8f4",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 25,
@@ -190,6 +190,7 @@
         "step_1": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/diseno.png",
             "number": "01",
             "title": "Diseño",
             "description": "<p>Todo comienza con una idea. Bocetamos conceptos que equilibran la estética moderna con motivos atemporales, seleccionando cuidadosamente la paleta de colores ideal.</p>"
@@ -198,6 +199,7 @@
         "step_2": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/digitalizacion.png",
             "number": "02",
             "title": "Digitalización",
             "description": "<p>Traducimos el trazo visual al lenguaje de las máquinas. Cada puntada se programa meticulosamente para definir densidad, dirección y textura, asegurando profundidad tridimensional.</p>"
@@ -206,6 +208,7 @@
         "step_3": {
           "type": "step",
           "settings": {
+            "image": "shopify://shop_images/bordado.png",
             "number": "03",
             "title": "Bordado",
             "description": "<p>La ejecución final. Utilizamos hilos de primera calidad sobre textiles premium, supervisando cada detalle para garantizar un acabado impecable y duradero.</p>"
@@ -219,6 +222,7 @@
       ],
       "name": "Nuestro proceso",
       "settings": {
+        "background_color": "#faf8f4",
         "label": "EL PROCESO",
         "heading": "Del Concepto a la Prenda",
         "label_color": "#9c4334",
@@ -234,18 +238,18 @@
         "padding_bottom": 72
       }
     },
-    "founder_quote01": {
+    "founder_quote_i7DAJn": {
       "type": "founder-quote",
       "name": "Cita de la fundadora",
       "settings": {
-        "image": "",
+        "image": "shopify://shop_images/fundadora.png",
         "image_position": "left",
-        "column_width_ratio": 45,
-        "quote_mark": "99",
-        "quote": "<p>El verdadero lujo reside en la atención al detalle. Fundé Hilvana para crear prendas que no solo se vistan, sino que se sientan; donde cada hilo cuenta una historia de innovación y respeto por la artesanía.</p>",
-        "author_name": "Elena Valdés",
+        "column_width_ratio": 40,
+        "quote_mark": "",
+        "quote": "<p>''El verdadero lujo reside en la atencion al detalle. Funde Hilvana para crear prendas que no solo se vistan, sino que se sientan; donde cada hilo cuenta una historia de innovacion y respeto por la artesania.''</p>",
+        "author_name": "Elena Valdes",
         "author_role": "Fundadora & Directora Creativa",
-        "background_color": "#FAF8F4",
+        "background_color": "{{ settings.color_palette.background }}",
         "quote_mark_color": "#2D4B44",
         "quote_text_color": "#2D4B44",
         "author_name_color": "#2D4B44",
@@ -261,6 +265,6 @@
     "hero_gxxiar",
     "about_us_mission",
     "process_steps01",
-    "founder_quote01"
+    "founder_quote_i7DAJn"
   ]
 }
