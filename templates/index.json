@@ -269,7 +269,7 @@
         "heading": "El Arte de la Precisión",
         "description": "<p>Hilvana nació de la fusión entre el respeto por las técnicas tradicionales y las posibilidades de la tecnología moderna. En nuestro taller, cada diseño comienza como un trazo en papel antes de ser digitalizado con extremo cuidado.</p><p>Creemos que el bordado a máquina no es una producción en masa, sino una herramienta que, guiada por manos expertas, permite crear piezas de una riqueza visual y táctil inigualable. Nuestra filosofía se basa en la durabilidad, la belleza sutil y el consumo consciente.</p>",
         "link_label": "Conoce más sobre nosotros",
-        "link_url": "",
+        "link_url": "shopify://pages/sobre-nosotros",
         "show_arrow": true,
         "background_color": "{{ settings.color_palette.background }}",
         "label_color": "#b0708a",
