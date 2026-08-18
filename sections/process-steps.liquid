@@ -1,0 +1,361 @@
+{% liquid
+  assign label = section.settings.label
+  assign heading = section.settings.heading
+%}
+
+<div
+  class="process-steps"
+  style="
+    --process-steps-bg: {{ section.settings.background_color }};
+    --process-steps-label-color: {{ section.settings.label_color }};
+    --process-steps-heading-color: {{ section.settings.heading_color }};
+    --process-steps-number-color: {{ section.settings.number_color }};
+    --process-steps-title-color: {{ section.settings.title_color }};
+    --process-steps-description-color: {{ section.settings.description_color }};
+    --process-steps-max-width: {{ section.settings.content_max_width }}px;
+    --process-steps-ratio: {{ section.settings.image_ratio }};
+    --process-steps-columns-gap: {{ section.settings.columns_gap }}px;
+    --process-steps-rows-gap: {{ section.settings.rows_gap }}px;
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="process-steps__container">
+    {% if label != blank or heading != blank %}
+      <div class="process-steps__header">
+        {% if label != blank %}
+          <p class="process-steps__label">{{ label }}</p>
+        {% endif %}
+        {% if heading != blank %}
+          <h2 class="process-steps__heading">{{ heading }}</h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="process-steps__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign image = block.settings.image
+          assign number = block.settings.number
+          assign title = block.settings.title
+          assign description = block.settings.description
+        %}
+        <div class="process-steps__item" {{ block.shopify_attributes }}>
+          <div class="process-steps__image-wrap">
+            {% if image != blank %}
+              {{
+                image
+                | image_url: width: 800
+                | image_tag: loading: 'lazy', class: 'process-steps__image', widths: '300,450,600,800'
+              }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'process-steps__image process-steps__image--placeholder' }}
+            {% endif %}
+          </div>
+          {% if number != blank %}
+            <p class="process-steps__number">{{ number }}</p>
+          {% endif %}
+          {% if title != blank %}
+            <h3 class="process-steps__title">{{ title }}</h3>
+          {% endif %}
+          {% if description != blank %}
+            <div class="process-steps__description">{{ description }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .process-steps {
+    display: block;
+    width: 100%;
+    background-color: var(--process-steps-bg);
+  }
+
+  .process-steps__container {
+    max-width: var(--process-steps-max-width);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .process-steps__container {
+      padding-inline: 40px;
+    }
+  }
+
+  .process-steps__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    margin-block-end: 48px;
+  }
+
+  .process-steps__label {
+    margin: 0;
+    color: var(--process-steps-label-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .process-steps__heading {
+    margin: 0;
+    color: var(--process-steps-heading-color);
+    font-family: var(--font-heading--family);
+  }
+
+  .process-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--process-steps-columns-gap);
+    row-gap: var(--process-steps-rows-gap);
+  }
+
+  @media screen and (max-width: 749px) {
+    .process-steps__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .process-steps__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .process-steps__image-wrap {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--process-steps-ratio, 4 / 3);
+    overflow: hidden;
+    margin-block-end: 20px;
+    background-color: #00000010;
+  }
+
+  .process-steps__image,
+  .process-steps__image--placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .process-steps__number {
+    margin: 0 0 6px;
+    color: var(--process-steps-number-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .process-steps__title {
+    margin: 0 0 10px;
+    color: var(--process-steps-title-color);
+    font-family: var(--font-heading--family);
+    font-size: 1.15rem;
+  }
+
+  .process-steps__description {
+    margin: 0;
+    color: var(--process-steps-description-color);
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Proceso de fabricacion",
+  "tag": "section",
+  "class": "process-steps-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Etiqueta",
+      "default": "EL PROCESO"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titulo",
+      "default": "Del Concepto a la Prenda"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color de la etiqueta",
+      "default": "#B0708A"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color del titulo",
+      "default": "#2F3B2F"
+    },
+    {
+      "type": "header",
+      "content": "Pasos"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Proporcion de imagen",
+      "options": [
+        { "value": "1 / 1", "label": "Cuadrada" },
+        { "value": "4 / 3", "label": "Horizontal" },
+        { "value": "4 / 5", "label": "Retrato" }
+      ],
+      "default": "4 / 3"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Color del numero",
+      "default": "#B0708A"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color del titulo del paso",
+      "default": "#2F3B2F"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color del texto",
+      "default": "#5A5A52"
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "label": "Espacio horizontal",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "rows_gap",
+      "label": "Espacio vertical",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Diseno"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Ancho maximo de la seccion",
+      "min": 800,
+      "max": 1600,
+      "step": 40,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Espaciado de la seccion"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Superior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Inferior",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Numero",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo",
+          "default": "Diseño"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Descripcion",
+          "default": "<p>Describe este paso del proceso.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Proceso de fabricacion",
+      "category": "Texto",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Diseño",
+            "description": "<p>Todo comienza con una idea. Bocetamos conceptos que equilibran la estetica moderna con motivos atemporales, seleccionando cuidadosamente la paleta de colores ideal.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Digitalizacion",
+            "description": "<p>Traducimos el trazo visual al lenguaje de las maquinas. Cada puntada se programa meticulosamente para definir densidad, direccion y textura, asegurando profundidad tridimensional.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Bordado",
+            "description": "<p>La ejecucion final. Utilizamos hilos de primera calidad sobre textiles premium, supervisando cada detalle para garantizar un acabado impecable y duradero.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

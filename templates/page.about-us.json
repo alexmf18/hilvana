@@ -1,0 +1,155 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "about_us_mission": {
+      "type": "about-us",
+      "name": "Nuestra misión",
+      "settings": {
+        "image": "",
+        "image_position": "right",
+        "column_width_ratio": 45,
+        "image_ratio": "auto",
+        "image_object_position": "center",
+        "image_border_radius": 0,
+        "image_shadow": false,
+        "text_alignment": "left",
+        "content_vertical_alignment": "flex-start",
+        "content_gap": 16,
+        "label_uppercase": true,
+        "label_letter_spacing": 1.5,
+        "heading_font_size": 32,
+        "description_font_size": 15,
+        "label": "NUESTRA MISIÓN",
+        "heading": "El arte del hilo, redefinido.",
+        "description": "<p>En Hilvana, creemos que la tecnología no reemplaza al toque humano, lo amplifica. Nuestra misión es preservar la rica herencia del bordado alrededor del mundo con técnicas de digitalización de vanguardia. Cada prenda cuenta una historia donde la textura, el color y el diseño contemporáneo convergen en perfecta armonía.</p><p>Operamos en el espacio entre lo analógico y lo digital, asegurando que el alma de lo hecho a mano permanezca intacta, al tiempo que ofrecemos una calidad y precisión incomparables.</p>",
+        "link_label": "",
+        "link_url": "",
+        "show_arrow": true,
+        "background_color": "#FAF8F4",
+        "label_color": "#9C4334",
+        "heading_color": "#2D4B44",
+        "text_color": "#5A5A52",
+        "link_color": "#5C6B47",
+        "content_max_width": 1200,
+        "padding_top": 64,
+        "padding_bottom": 40
+      }
+    },
+    "process_steps01": {
+      "type": "process-steps",
+      "name": "Nuestro proceso",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "image": "",
+            "number": "01",
+            "title": "Diseño",
+            "description": "<p>Todo comienza con una idea. Bocetamos conceptos que equilibran la estética moderna con motivos atemporales, seleccionando cuidadosamente la paleta de colores ideal.</p>"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "image": "",
+            "number": "02",
+            "title": "Digitalización",
+            "description": "<p>Traducimos el trazo visual al lenguaje de las máquinas. Cada puntada se programa meticulosamente para definir densidad, dirección y textura, asegurando profundidad tridimensional.</p>"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "image": "",
+            "number": "03",
+            "title": "Bordado",
+            "description": "<p>La ejecución final. Utilizamos hilos de primera calidad sobre textiles premium, supervisando cada detalle para garantizar un acabado impecable y duradero.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "label": "EL PROCESO",
+        "heading": "Del Concepto a la Prenda",
+        "label_color": "#9C4334",
+        "heading_color": "#2D4B44",
+        "image_ratio": "4 / 3",
+        "number_color": "#9C4334",
+        "title_color": "#2D4B44",
+        "description_color": "#5A5A52",
+        "columns_gap": 32,
+        "rows_gap": 40,
+        "content_max_width": 1200,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_us_mission",
+    "process_steps01"
+  ]
+}
