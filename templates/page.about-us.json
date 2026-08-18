@@ -59,19 +59,110 @@
         "padding-block-end": 80
       }
     },
+    "hero_gxxiar": {
+      "type": "hero",
+      "blocks": {
+        "text_tHNTpm": {
+          "type": "text",
+          "settings": {
+            "text": "<h4>Bordado con propósito, hecho para durar</h4>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "2.5rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#9C4334",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_QAWxBf": {
+          "type": "text",
+          "settings": {
+            "text": "<h2></h2><p>En Hilvana creamos prendas con alma — camisetas bordadas a mano que combinan artesanía y estilo cotidiano. Cada punto cuenta una historia.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#FAF8F4",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 25,
+            "padding-block-start": 0,
+            "padding-block-end": 32,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_tHNTpm",
+        "text_QAWxBf"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/hero_conocenos_d7b33311-2ed5-40af-8020-1a86a806f4c5.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "background_color": "",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 44
+      }
+    },
     "about_us_mission": {
       "type": "about-us",
       "name": "Nuestra misión",
       "settings": {
-        "image": "",
+        "image": "shopify://shop_images/hilos.png",
         "image_position": "right",
         "column_width_ratio": 45,
-        "image_ratio": "auto",
+        "image_ratio": "1 / 1",
         "image_object_position": "center",
         "image_border_radius": 0,
         "image_shadow": false,
         "text_alignment": "left",
-        "content_vertical_alignment": "flex-start",
+        "content_vertical_alignment": "center",
         "content_gap": 16,
         "label_uppercase": true,
         "label_letter_spacing": 1.5,
@@ -83,24 +174,22 @@
         "link_label": "",
         "link_url": "",
         "show_arrow": true,
-        "background_color": "#FAF8F4",
-        "label_color": "#9C4334",
-        "heading_color": "#2D4B44",
-        "text_color": "#5A5A52",
-        "link_color": "#5C6B47",
+        "background_color": "{{ settings.color_palette.background }}",
+        "label_color": "#9c4334",
+        "heading_color": "#2d4b44",
+        "text_color": "#5a5a52",
+        "link_color": "#5c6b47",
         "content_max_width": 1200,
-        "padding_top": 64,
+        "padding_top": 100,
         "padding_bottom": 40
       }
     },
     "process_steps01": {
       "type": "process-steps",
-      "name": "Nuestro proceso",
       "blocks": {
         "step_1": {
           "type": "step",
           "settings": {
-            "image": "",
             "number": "01",
             "title": "Diseño",
             "description": "<p>Todo comienza con una idea. Bocetamos conceptos que equilibran la estética moderna con motivos atemporales, seleccionando cuidadosamente la paleta de colores ideal.</p>"
@@ -109,7 +198,6 @@
         "step_2": {
           "type": "step",
           "settings": {
-            "image": "",
             "number": "02",
             "title": "Digitalización",
             "description": "<p>Traducimos el trazo visual al lenguaje de las máquinas. Cada puntada se programa meticulosamente para definir densidad, dirección y textura, asegurando profundidad tridimensional.</p>"
@@ -118,7 +206,6 @@
         "step_3": {
           "type": "step",
           "settings": {
-            "image": "",
             "number": "03",
             "title": "Bordado",
             "description": "<p>La ejecución final. Utilizamos hilos de primera calidad sobre textiles premium, supervisando cada detalle para garantizar un acabado impecable y duradero.</p>"
@@ -130,15 +217,16 @@
         "step_2",
         "step_3"
       ],
+      "name": "Nuestro proceso",
       "settings": {
         "label": "EL PROCESO",
         "heading": "Del Concepto a la Prenda",
-        "label_color": "#9C4334",
-        "heading_color": "#2D4B44",
+        "label_color": "#9c4334",
+        "heading_color": "#2d4b44",
         "image_ratio": "4 / 3",
-        "number_color": "#9C4334",
-        "title_color": "#2D4B44",
-        "description_color": "#5A5A52",
+        "number_color": "#9c4334",
+        "title_color": "#2d4b44",
+        "description_color": "#5a5a52",
         "columns_gap": 32,
         "rows_gap": 40,
         "content_max_width": 1200,
@@ -170,6 +258,7 @@
   },
   "order": [
     "main",
+    "hero_gxxiar",
     "about_us_mission",
     "process_steps01",
     "founder_quote01"
