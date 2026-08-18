@@ -65,9 +65,9 @@
         "text_tHNTpm": {
           "type": "text",
           "settings": {
-            "text": "<h2>New arrivals</h2>",
+            "text": "<h4>Bordado con propósito, hecho para durar</h4>",
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
@@ -90,9 +90,9 @@
         "text_QAWxBf": {
           "type": "text",
           "settings": {
-            "text": "<p>Made with care and unconditionally loved by our customers.</p>",
+            "text": "<h2></h2><p>En Hilvana creamos prendas con alma — camisetas bordadas a mano que combinan artesanía y estilo cotidiano. Cada punto cuenta una historia.</p>",
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
@@ -147,7 +147,7 @@
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-end": 44
       }
     },
     "about_us_mission": {
@@ -179,7 +179,7 @@
         "text_color": "#5a5a52",
         "link_color": "#5c6b47",
         "content_max_width": 1200,
-        "padding_top": 64,
+        "padding_top": 100,
         "padding_bottom": 40
       }
     },
