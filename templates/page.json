@@ -73,7 +73,7 @@
                   "settings": {
                     "text": "<p>Nuestro objetivo es que cada cliente quede completamente satisfecho con su compra. Si por cualquier motivo no estás conforme con tu prenda, escríbenos y revisaremos tu caso con atención. Queremos ayudarte a encontrar la mejor solución y que disfrutes de la calidad, el cuidado y los detalles de tu pieza Hilvana.</p>",
                     "width": "100%",
-                    "max_width": "normal",
+                    "max_width": "none",
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
@@ -112,7 +112,7 @@
                   "settings": {
                     "text": "<p>Algunos artículos se consideran venta final y no pueden devolverse ni cambiarse. Esta condición se indicará claramente en la página del producto antes de completar la compra. Te recomendamos revisar cuidadosamente los detalles, tallas y características de cada prenda; si tienes alguna duda, nuestro equipo estará encantado de orientarte antes de realizar tu pedido.</p>",
                     "width": "100%",
-                    "max_width": "normal",
+                    "max_width": "none",
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
@@ -153,7 +153,7 @@
                   "settings": {
                     "text": "<p>Preparamos cada pedido con cuidado para enviarlo lo antes posible. Cuando tu paquete salga de nuestro centro de preparación, recibirás un correo electrónico con la información de seguimiento disponible. Los plazos de entrega pueden variar según tu ubicación, la disponibilidad de la prenda y el transportista, pero trabajaremos para que tu pedido Hilvana llegue de forma segura y puntual.</p>",
                     "width": "100%",
-                    "max_width": "normal",
+                    "max_width": "none",
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
@@ -194,7 +194,7 @@
                   "settings": {
                     "text": "<p>Nuestras prendas y productos se fabrican tanto localmente como en otros países, siempre con una selección cuidadosa de nuestros socios de producción. Trabajamos para mantener estándares elevados de calidad, acabados y durabilidad, prestando especial atención a los detalles que hacen especial a cada diseño bordado de Hilvana.</p>",
                     "width": "100%",
-                    "max_width": "normal",
+                    "max_width": "none",
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
@@ -235,7 +235,7 @@
                   "settings": {
                     "text": "<p>El costo de envío se calcula según tu ubicación, el tamaño de tu pedido y los artículos seleccionados. Antes de finalizar la compra podrás ver claramente el precio y las opciones de envío disponibles. Así tendrás toda la información necesaria para elegir con tranquilidad la alternativa que mejor se adapte a tu pedido Hilvana.</p>",
                     "width": "100%",
-                    "max_width": "normal",
+                    "max_width": "none",
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
