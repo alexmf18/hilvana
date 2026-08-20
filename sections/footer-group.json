@@ -209,7 +209,7 @@
             "text_explorar_links": {
               "type": "text",
               "settings": {
-                "text": "<p><a href=\"/collections/all\" title=\"Todos los productos\">Catalogo</a></p><p><a href=\"/pages/sobre-nosotros\" title=\"sobre nosotros\">Sobre Nosotros</a></p><p><a href=\"shopify://pages/faq\">FAQ</a></p><p><a href=\"/pages/contact\" title=\"Contact\">Contacto</a></p>",
+                "text": "<p><a href=\"/collections/all\" title=\"Todos los productos\">Catalogo</a></p><p><a href=\"/pages/sobre-nosotros\" title=\"sobre nosotros\">Sobre Nosotros</a></p><p><a href=\"/pages/preguntas-frecuentes\" title=\"Preguntas frecuentes\">FAQ</a></p><p><a href=\"/pages/contact\" title=\"Contact\">Contacto</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
